@@ -30,11 +30,11 @@ export default function FoodItemList() {
             >
               <Text style={styles.foodCardText}>Chicken Alfredo</Text>
               <View style={{ flexDirection: "row" }}>
-                <Ionicons name="star" size={13} color="yellow" />
-                <Ionicons name="star" size={13} color="yellow" />
-                <Ionicons name="star" size={13} color="yellow" />
-                <Ionicons name="star" size={13} color="yellow" />
-                <Ionicons name="star" size={13} color="yellow" />
+                <Ionicons name="star" size={13} color="#FDBF00" />
+                <Ionicons name="star" size={13} color="#FDBF00" />
+                <Ionicons name="star" size={13} color="#FDBF00" />
+                <Ionicons name="star" size={13} color="#FDBF00" />
+                <Ionicons name="star" size={13} color="#FDBF00" />
               </View>
             </ImageBackground>
           </TouchableHighlight>

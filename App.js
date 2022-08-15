@@ -17,6 +17,9 @@ export default function App() {
   return (
     <ScrollView style={styles.mainContainer}>
       <StatusBar style="dark" />
+      <View style={{ paddingHorizontal: 25 }}>
+        <Text style={{ fontSize: 36 }}>Your Bite</Text>
+      </View>
       <View
         style={{
           width: "100%",
