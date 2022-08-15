@@ -10,29 +10,55 @@ import {
   Image,
   ImageBackground,
   ScrollView,
+  Dimensions,
 } from "react-native";
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.mainContainer}>
+    <ScrollView style={styles.mainContainer}>
       <StatusBar style="dark" />
-      <View style={styles.container}>
-        <Text>HEYYYYYY</Text>
+      <View
+        style={{
+          width: "100%",
+          borderRadius: 30,
+          overflow: "hidden",
+          height: Dimensions.get("window").width - 50,
+          padding: 25,
+        }}
+      >
+        <ImageBackground
+          source={require("../byte-right/assets/main.png")}
+          resizeMode="cover"
+          style={{
+            height: "100%",
+            borderRadius: 15,
+            overflow: "hidden",
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Image
+            source={require("../byte-right/assets/logo.png")}
+            style={{ marginBottom: 50 }}
+          />
+          <Text style={{ color: "white" }}>Hellow world</Text>
+        </ImageBackground>
       </View>
-      <Text style={styles.bodyText}>This is the new te </Text>
       <FoodItemList />
       <FoodItemList />
-    </SafeAreaView>
+      <FoodItemList />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
-    paddingTop: Platform.OS === "android" ? 25 : 0,
+    marginTop: 30,
   },
   container: {
     flex: 1,
-    backgroundColor: "red",
+    backgroundColor: "#49CF0F",
     alignItems: "center",
     justifyContent: "center",
     minHeight: 200,
@@ -40,6 +66,6 @@ const styles = StyleSheet.create({
   bodyText: {
     fontSize: 20,
     textAlign: "center",
-    color: "red",
+    color: "#49CF0F",
   },
 });
