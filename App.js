@@ -1,28 +1,35 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
+import FoodItemList from "./components/FoodItemList";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableHighlight,
+  SafeAreaView,
+  Platform,
+  Image,
+  ImageBackground,
+  ScrollView,
+} from "react-native";
 
 export default function App() {
   return (
-    <View>
-      <StatusBar style="light" />
+    <SafeAreaView style={styles.mainContainer}>
+      <StatusBar style="dark" />
       <View style={styles.container}>
         <Text>HEYYYYYY</Text>
       </View>
-      <Text style={styles.bodyText}>
-        Open up App.js to start working on your app! something else new here
-      </Text>
-      <TouchableHighlight
-        onPress={() => {
-          console.log("Hello wrold");
-        }}
-      >
-        <Text>Hello world there</Text>
-      </TouchableHighlight>
-    </View>
+      <Text style={styles.bodyText}>This is the new te </Text>
+      <FoodItemList />
+      <FoodItemList />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    paddingTop: Platform.OS === "android" ? 25 : 0,
+  },
   container: {
     flex: 1,
     backgroundColor: "red",
@@ -31,7 +38,8 @@ const styles = StyleSheet.create({
     minHeight: 200,
   },
   bodyText: {
-    fontSize: 40,
+    fontSize: 20,
+    textAlign: "center",
     color: "red",
   },
 });
