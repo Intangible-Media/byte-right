@@ -19,7 +19,7 @@ export default function FoodItemList() {
 
   return (
     <View style={{ paddingLeft: 25 }}>
-      <Text>Hello world</Text>
+      <Text style={{ fontSize: 18 }}>Hello world</Text>
       <ScrollView style={styles.foodCardsContainer} horizontal={true}>
         {allFoods.map((food, index) => (
           <TouchableHighlight key={index} style={styles.foodCardContainer}>

@@ -45,7 +45,9 @@ export default function App() {
             source={require("../byte-right/assets/logo.png")}
             style={{ marginBottom: 50 }}
           />
-          <Text style={{ color: "white" }}>Hellow world</Text>
+          <Text style={{ color: "white", fontSize: 25 }}>
+            Let's understand you
+          </Text>
         </ImageBackground>
       </View>
       <FoodItemList />
