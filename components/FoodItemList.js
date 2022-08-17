@@ -123,17 +123,17 @@ export default function FoodItemList() {
     const foodListDataCopy = [...foodListData];
 
     // this updates the list to let the user know that the food they clicked
-    // on is currelty active.
+    // on
     const updatedFoodListData = foodListDataCopy.map((foodItem) => {
       if (foodItem.name === food.name) {
-        return (foodItem.opened = !food.opened);
+        return (foodItem.opened = !foodItem.opened);
       }
 
       return;
     });
 
-    const foodListDataPartOne = updatedFoodListData.slice(0, foodItemIndex + 1);
-    const foodListDataPartTwo = updatedFoodListData.slice(foodItemIndex + 1);
+    const foodListDataPartOne = foodListDataCopy.slice(0, foodItemIndex + 1);
+    const foodListDataPartTwo = foodListDataCopy.slice(foodItemIndex + 1);
 
     const newFoodListData = [
       ...foodListDataPartOne,
