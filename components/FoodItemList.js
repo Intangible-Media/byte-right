@@ -17,12 +17,12 @@ export default function FoodItemList() {
       name: "Beef",
       image: require("../assets/foodCardExample1.png"),
       opened: false,
-      stars: 3,
+      stars: 4,
       subFoods: [
         {
           name: "Beef - Ribeye",
           image: require("../assets/foodCardExample2.png"),
-          stars: 3,
+          stars: 2,
           subFoods: [],
         },
         {
@@ -37,7 +37,7 @@ export default function FoodItemList() {
       name: "Chicken",
       image: require("../assets/foodCardExample2.png"),
       opened: false,
-      stars: 3,
+      stars: 4,
       subFoods: [
         {
           name: "Chicken - Legs",
@@ -77,7 +77,7 @@ export default function FoodItemList() {
       name: "Fish",
       image: require("../assets/foodCardExample4.png"),
       opened: false,
-      stars: 3,
+      stars: 4,
       subFoods: [
         {
           name: "Chicken",
@@ -115,18 +115,29 @@ export default function FoodItemList() {
     },
   ]);
 
-  const updateFoodListItems = ({ foodItemIndex, subFoods }) => {
-    if (subFoods.length === 0) {
+  const updateFoodListItems = ({ foodItemIndex, food }) => {
+    if (food.subFoods.length === 0 || food.opened) {
       return;
     }
+
     const foodListDataCopy = [...foodListData];
 
-    const foodListDataPartOne = foodListDataCopy.slice(0, foodItemIndex + 1);
-    const foodListDataPartTwo = foodListDataCopy.slice(foodItemIndex + 1);
+    // this updates the list to let the user know that the food they clicked
+    // on is currelty active.
+    const updatedFoodListData = foodListDataCopy.map((foodItem) => {
+      if (foodItem.name === food.name) {
+        return (foodItem.opened = !food.opened);
+      }
+
+      return;
+    });
+
+    const foodListDataPartOne = updatedFoodListData.slice(0, foodItemIndex + 1);
+    const foodListDataPartTwo = updatedFoodListData.slice(foodItemIndex + 1);
 
     const newFoodListData = [
       ...foodListDataPartOne,
-      ...subFoods,
+      ...food.subFoods,
       ...foodListDataPartTwo,
     ];
 
@@ -164,7 +175,7 @@ export default function FoodItemList() {
                 onPress={() => {
                   updateFoodListItems({
                     foodItemIndex: index,
-                    subFoods: food.subFoods,
+                    food,
                   });
                 }}
               >
@@ -174,8 +185,9 @@ export default function FoodItemList() {
                     <Ionicons
                       name="star"
                       key={`${food.name}-stars-${starIndex}`}
-                      size={13}
+                      size={18}
                       color="#FDBF00"
+                      style={{ marginRight: 3 }}
                     />
                   ))}
                 </View>

@@ -66,12 +66,12 @@ export default function App() {
               flex: 1,
               justifyContent: "flex-start",
               alignItems: "center",
-              paddingTop: 30,
+              paddingTop: 0,
             }}
           >
             <Image
               source={require("../byte-right/assets/logo.png")}
-              style={{ marginBottom: 50 }}
+              style={{ marginBottom: 50, marginTop: 30 }}
             />
             <Text
               style={{
