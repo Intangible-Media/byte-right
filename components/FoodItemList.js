@@ -5,8 +5,10 @@ import {
   ScrollView,
   StyleSheet,
   TouchableHighlight,
+  Pressable,
 } from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function FoodItemList() {
   const allFoods = [
@@ -18,26 +20,43 @@ export default function FoodItemList() {
   ];
 
   return (
-    <View style={{ paddingLeft: 25 }}>
+    <View style={{ paddingLeft: 20, marginBottom: 30 }}>
       <Text style={{ fontSize: 18 }}>Hello world</Text>
       <ScrollView style={styles.foodCardsContainer} horizontal={true}>
         {allFoods.map((food, index) => (
-          <TouchableHighlight key={index} style={styles.foodCardContainer}>
+          <View key={index} style={styles.foodCardContainer}>
             <ImageBackground
               style={styles.foodCardImage}
               source={food}
               resizeMode="contain"
             >
-              <Text style={styles.foodCardText}>Chicken Alfredo</Text>
-              <View style={{ flexDirection: "row" }}>
-                <Ionicons name="star" size={13} color="#FDBF00" />
-                <Ionicons name="star" size={13} color="#FDBF00" />
-                <Ionicons name="star" size={13} color="#FDBF00" />
-                <Ionicons name="star" size={13} color="#FDBF00" />
-                <Ionicons name="star" size={13} color="#FDBF00" />
-              </View>
+              <Pressable
+                style={({ pressed }) => [
+                  {
+                    backgroundColor: pressed
+                      ? "rgba(0,0,0,.2)"
+                      : "rgba(0,0,0,0)",
+                  },
+                  {
+                    height: "100%",
+                    borderRadius: 10,
+                    justifyContent: "flex-end",
+                    padding: 15,
+                    paddingBottom: 25,
+                  },
+                ]}
+              >
+                <Text style={styles.foodCardText}>Chicken Alfredo</Text>
+                <View style={{ flexDirection: "row" }}>
+                  <Ionicons name="star" size={13} color="#FDBF00" />
+                  <Ionicons name="star" size={13} color="#FDBF00" />
+                  <Ionicons name="star" size={13} color="#FDBF00" />
+                  <Ionicons name="star" size={13} color="#FDBF00" />
+                  <Ionicons name="star" size={13} color="#FDBF00" />
+                </View>
+              </Pressable>
             </ImageBackground>
-          </TouchableHighlight>
+          </View>
         ))}
       </ScrollView>
     </View>
@@ -47,7 +66,7 @@ export default function FoodItemList() {
 const styles = StyleSheet.create({
   foodCardsContainer: {},
   foodCardContainer: {
-    maxWidth: 148,
+    width: 148,
     height: 185,
     margin: 10,
     marginLeft: 0,
@@ -55,8 +74,8 @@ const styles = StyleSheet.create({
   },
   foodCardImage: {
     flex: 1,
-    padding: 15,
-    paddingBottom: 25,
+    // padding: 15,
+    // paddingBottom: 25,
     justifyContent: "flex-end",
   },
   foodCardText: {

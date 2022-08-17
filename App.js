@@ -4,9 +4,6 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
-  SafeAreaView,
-  Platform,
   Image,
   ImageBackground,
   ScrollView,
@@ -17,7 +14,7 @@ export default function App() {
   return (
     <ScrollView style={styles.mainContainer}>
       <StatusBar style="dark" />
-      <View style={{ paddingHorizontal: 25 }}>
+      <View style={{ paddingHorizontal: 20 }}>
         <Text style={{ fontSize: 36 }}>Your Bite</Text>
       </View>
       <View
@@ -26,7 +23,7 @@ export default function App() {
           borderRadius: 30,
           overflow: "hidden",
           height: Dimensions.get("window").width - 50,
-          padding: 25,
+          padding: 20,
         }}
       >
         <ImageBackground
@@ -45,7 +42,12 @@ export default function App() {
             source={require("../byte-right/assets/logo.png")}
             style={{ marginBottom: 50 }}
           />
-          <Text style={{ color: "white", fontSize: 25 }}>
+          <Text
+            style={{
+              color: "white",
+              fontSize: 25,
+            }}
+          >
             Let's understand you
           </Text>
         </ImageBackground>
