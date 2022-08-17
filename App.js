@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import FoodItemList from "./components/FoodItemList";
+import BottomNavigation from "./components/Navigations/BottomNavigation";
 import {
   StyleSheet,
   Text,
@@ -8,54 +9,58 @@ import {
   ImageBackground,
   ScrollView,
   Dimensions,
+  Pressable,
 } from "react-native";
 
 export default function App() {
   return (
-    <ScrollView style={styles.mainContainer}>
-      <StatusBar style="dark" />
-      <View style={{ paddingHorizontal: 20 }}>
-        <Text style={{ fontSize: 36 }}>Your Bite</Text>
-      </View>
-      <View
-        style={{
-          width: "100%",
-          borderRadius: 30,
-          overflow: "hidden",
-          height: Dimensions.get("window").width - 50,
-          padding: 20,
-        }}
-      >
-        <ImageBackground
-          source={require("../byte-right/assets/main.png")}
-          resizeMode="cover"
+    <View>
+      <ScrollView style={styles.mainContainer}>
+        <StatusBar style="dark" />
+        <View style={{ paddingHorizontal: 20 }}>
+          <Text style={{ fontSize: 36 }}>Your Bite</Text>
+        </View>
+        <View
           style={{
-            height: "100%",
-            borderRadius: 15,
+            width: "100%",
+            borderRadius: 30,
             overflow: "hidden",
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
+            height: Dimensions.get("window").width - 50,
+            padding: 20,
           }}
         >
-          <Image
-            source={require("../byte-right/assets/logo.png")}
-            style={{ marginBottom: 50 }}
-          />
-          <Text
+          <ImageBackground
+            source={require("../byte-right/assets/main.png")}
+            resizeMode="cover"
             style={{
-              color: "white",
-              fontSize: 25,
+              height: "100%",
+              borderRadius: 15,
+              overflow: "hidden",
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            Let's understand you
-          </Text>
-        </ImageBackground>
-      </View>
-      <FoodItemList />
-      <FoodItemList />
-      <FoodItemList />
-    </ScrollView>
+            <Image
+              source={require("../byte-right/assets/logo.png")}
+              style={{ marginBottom: 50 }}
+            />
+            <Text
+              style={{
+                color: "white",
+                fontSize: 25,
+              }}
+            >
+              Let's understand you
+            </Text>
+          </ImageBackground>
+        </View>
+        <FoodItemList />
+        <FoodItemList />
+        <FoodItemList />
+      </ScrollView>
+      <BottomNavigation />
+    </View>
   );
 }
 
