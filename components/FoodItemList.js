@@ -21,7 +21,9 @@ export default function FoodItemList() {
 
   return (
     <View style={{ paddingLeft: 20, marginBottom: 30 }}>
-      <Text style={{ fontSize: 18 }}>Hello world</Text>
+      <Text style={{ fontSize: 18, fontFamily: "Nunito-Black" }}>
+        Hello world
+      </Text>
       <ScrollView style={styles.foodCardsContainer} horizontal={true}>
         {allFoods.map((food, index) => (
           <View key={index} style={styles.foodCardContainer}>
@@ -74,12 +76,11 @@ const styles = StyleSheet.create({
   },
   foodCardImage: {
     flex: 1,
-    // padding: 15,
-    // paddingBottom: 25,
     justifyContent: "flex-end",
   },
   foodCardText: {
     color: "white",
     fontSize: 15,
+    fontFamily: "OpenSans-Semi-Bold",
   },
 });

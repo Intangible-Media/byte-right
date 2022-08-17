@@ -1,6 +1,9 @@
+import { useEffect, useCallback } from "react";
 import { StatusBar } from "expo-status-bar";
 import FoodItemList from "./components/FoodItemList";
 import BottomNavigation from "./components/Navigations/BottomNavigation";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 import {
   StyleSheet,
   Text,
@@ -13,12 +16,37 @@ import {
 } from "react-native";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    "Nunito-Black": require("./assets/fonts/Nunito-Black.ttf"),
+    "OpenSans-Semi-Bold": require("./assets/fonts/OpenSans-SemiBold.ttf"),
+  });
+
+  useEffect(() => {
+    async function prepare() {
+      await SplashScreen.preventAutoHideAsync();
+    }
+
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View>
+    <View onLayout={onLayoutRootView}>
       <ScrollView style={styles.mainContainer}>
         <StatusBar style="dark" />
         <View style={{ paddingHorizontal: 20 }}>
-          <Text style={{ fontSize: 36 }}>Your Bite</Text>
+          <Text style={{ fontSize: 36, fontFamily: "Nunito-Black" }}>
+            Your Bite
+          </Text>
         </View>
         <View
           style={{
@@ -49,6 +77,7 @@ export default function App() {
               style={{
                 color: "white",
                 fontSize: 25,
+                fontFamily: "Nunito-Black",
               }}
             >
               Let's understand you
