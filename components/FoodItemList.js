@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Text,
   View,
@@ -11,25 +12,138 @@ import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function FoodItemList() {
-  const allFoods = [
-    require("../assets/foodCardExample1.png"),
-    require("../assets/foodCardExample2.png"),
-    require("../assets/foodCardExample3.png"),
-    require("../assets/foodCardExample4.png"),
-    require("../assets/foodCardExample5.png"),
-  ];
+  const [foodListData, setFoodListData] = useState([
+    {
+      name: "Beef",
+      image: require("../assets/foodCardExample1.png"),
+      opened: false,
+      stars: 3,
+      subFoods: [
+        {
+          name: "Beef - Ribeye",
+          image: require("../assets/foodCardExample2.png"),
+          stars: 3,
+          subFoods: [],
+        },
+        {
+          name: "Beef - Ground Beef",
+          image: require("../assets/foodCardExample4.png"),
+          stars: 3,
+          subFoods: [],
+        },
+      ],
+    },
+    {
+      name: "Chicken",
+      image: require("../assets/foodCardExample2.png"),
+      opened: false,
+      stars: 3,
+      subFoods: [
+        {
+          name: "Chicken - Legs",
+          image: require("../assets/foodCardExample2.png"),
+          stars: 3,
+          subFoods: [],
+        },
+        {
+          name: "Chicken - Beast",
+          image: require("../assets/foodCardExample4.png"),
+          stars: 3,
+          subFoods: [],
+        },
+      ],
+    },
+    {
+      name: "Turkey",
+      image: require("../assets/foodCardExample3.png"),
+      opened: false,
+      stars: 3,
+      subFoods: [
+        {
+          name: "Chicken",
+          image: require("../assets/foodCardExample2.png"),
+          stars: 3,
+          subFoods: [],
+        },
+        {
+          name: "Fish",
+          image: require("../assets/foodCardExample4.png"),
+          stars: 3,
+          subFoods: [],
+        },
+      ],
+    },
+    {
+      name: "Fish",
+      image: require("../assets/foodCardExample4.png"),
+      opened: false,
+      stars: 3,
+      subFoods: [
+        {
+          name: "Chicken",
+          image: require("../assets/foodCardExample2.png"),
+          stars: 3,
+          subFoods: [],
+        },
+        {
+          name: "Fish",
+          image: require("../assets/foodCardExample4.png"),
+          stars: 3,
+          subFoods: [],
+        },
+      ],
+    },
+    {
+      name: "Ham",
+      image: require("../assets/foodCardExample5.png"),
+      opened: false,
+      stars: 3,
+      subFoods: [
+        {
+          name: "Chicken",
+          image: require("../assets/foodCardExample2.png"),
+          stars: 3,
+          subFoods: [],
+        },
+        {
+          name: "Fish",
+          image: require("../assets/foodCardExample4.png"),
+          stars: 3,
+          subFoods: [],
+        },
+      ],
+    },
+  ]);
+
+  const updateFoodListItems = ({ foodItemIndex, subFoods }) => {
+    if (subFoods.length === 0) {
+      return;
+    }
+    const foodListDataCopy = [...foodListData];
+
+    const foodListDataPartOne = foodListDataCopy.slice(0, foodItemIndex + 1);
+    const foodListDataPartTwo = foodListDataCopy.slice(foodItemIndex + 1);
+
+    const newFoodListData = [
+      ...foodListDataPartOne,
+      ...subFoods,
+      ...foodListDataPartTwo,
+    ];
+
+    console.log(newFoodListData);
+
+    return setFoodListData(newFoodListData);
+  };
 
   return (
     <View style={{ paddingLeft: 20, marginBottom: 30 }}>
-      <Text style={{ fontSize: 18, fontFamily: "Nunito-Black" }}>
-        Hello world
-      </Text>
+      <Text style={{ fontSize: 18, fontFamily: "OpenSans-Bold" }}>Meats</Text>
       <ScrollView style={styles.foodCardsContainer} horizontal={true}>
-        {allFoods.map((food, index) => (
+        {foodListData.map((food, index) => (
           <View key={index} style={styles.foodCardContainer}>
             <ImageBackground
               style={styles.foodCardImage}
-              source={food}
+              source={food.image}
               resizeMode="contain"
             >
               <Pressable
@@ -47,14 +161,23 @@ export default function FoodItemList() {
                     paddingBottom: 25,
                   },
                 ]}
+                onPress={() => {
+                  updateFoodListItems({
+                    foodItemIndex: index,
+                    subFoods: food.subFoods,
+                  });
+                }}
               >
-                <Text style={styles.foodCardText}>Chicken Alfredo</Text>
+                <Text style={styles.foodCardText}>{food.name}</Text>
                 <View style={{ flexDirection: "row" }}>
-                  <Ionicons name="star" size={13} color="#FDBF00" />
-                  <Ionicons name="star" size={13} color="#FDBF00" />
-                  <Ionicons name="star" size={13} color="#FDBF00" />
-                  <Ionicons name="star" size={13} color="#FDBF00" />
-                  <Ionicons name="star" size={13} color="#FDBF00" />
+                  {[...Array(food.stars)].map((star, starIndex) => (
+                    <Ionicons
+                      name="star"
+                      key={`${food.name}-stars-${starIndex}`}
+                      size={13}
+                      color="#FDBF00"
+                    />
+                  ))}
                 </View>
               </Pressable>
             </ImageBackground>
@@ -80,7 +203,8 @@ const styles = StyleSheet.create({
   },
   foodCardText: {
     color: "white",
-    fontSize: 15,
-    fontFamily: "OpenSans-Semi-Bold",
+    fontSize: 16,
+    fontFamily: "OpenSans-Bold",
+    marginBottom: 8,
   },
 });

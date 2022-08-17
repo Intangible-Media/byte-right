@@ -12,13 +12,12 @@ import {
   ImageBackground,
   ScrollView,
   Dimensions,
-  Pressable,
 } from "react-native";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
     "Nunito-Black": require("./assets/fonts/Nunito-Black.ttf"),
-    "OpenSans-Semi-Bold": require("./assets/fonts/OpenSans-SemiBold.ttf"),
+    "OpenSans-Bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
 
   useEffect(() => {
@@ -65,8 +64,9 @@ export default function App() {
               borderRadius: 15,
               overflow: "hidden",
               flex: 1,
-              justifyContent: "center",
+              justifyContent: "flex-start",
               alignItems: "center",
+              paddingTop: 30,
             }}
           >
             <Image
