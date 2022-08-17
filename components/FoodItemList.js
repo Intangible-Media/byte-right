@@ -8,7 +8,8 @@ import {
   TouchableHighlight,
   Pressable,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, Entypo } from "@expo/vector-icons";
+
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function FoodItemList() {
@@ -116,7 +117,10 @@ export default function FoodItemList() {
   ]);
 
   const updateFoodListItems = ({ foodItemIndex, food }) => {
-    if (food.subFoods.length === 0 || food.opened) {
+    if (food.subFoods.length === 0) return;
+    if (food.opened) {
+      // get the id of all the foods on that group and its children
+
       return;
     }
 
@@ -185,7 +189,16 @@ export default function FoodItemList() {
                     <Ionicons
                       name="star"
                       key={`${food.name}-stars-${starIndex}`}
-                      size={18}
+                      size={20}
+                      color="#FDBF00"
+                      style={{ marginRight: 3 }}
+                    />
+                  ))}
+                  {[...Array(5 - food.stars)].map((star, starIndex) => (
+                    <Entypo
+                      key={`${food.name}-stars-outlined-${starIndex}`}
+                      name="star-outlined"
+                      size={20}
                       color="#FDBF00"
                       style={{ marginRight: 3 }}
                     />
