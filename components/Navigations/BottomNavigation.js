@@ -1,5 +1,9 @@
 import { Ionicons, Entypo, FontAwesome } from "@expo/vector-icons";
 import {
+  NavigationContainer,
+  useNavigationContainerRef,
+} from "@react-navigation/native";
+import {
   StyleSheet,
   Text,
   View,
@@ -11,6 +15,8 @@ import {
 } from "react-native";
 
 export default function BottomNavigation() {
+  const navigationRef = useNavigationContainerRef(); // You can also use a regular ref with `React.useRef()`
+
   return (
     <View style={styles.NavigationContainer}>
       <View style={styles.Navigation}>
@@ -31,7 +37,10 @@ export default function BottomNavigation() {
         <Pressable style={styles.NavigationItem}>
           <FontAwesome name="camera" size={24} color="#BBBEC5" />
         </Pressable>
-        <Pressable style={styles.NavigationItem}>
+        <Pressable
+          style={styles.NavigationItem}
+          onPress={() => navigationRef.navigate("Home")}
+        >
           <FontAwesome name="camera" size={24} color="#BBBEC5" />
         </Pressable>
       </View>
