@@ -40,7 +40,7 @@ export default function App() {
 
   return (
     <View onLayout={onLayoutRootView}>
-      <ScrollView style={styles.mainContainer}>
+      <ScrollView style={[styles.mainContainer, { paddingTop: 50 }]}>
         <StatusBar style="dark" />
         <View style={{ paddingHorizontal: 20 }}>
           <Text style={{ fontSize: 36, fontFamily: "Nunito-Black" }}>

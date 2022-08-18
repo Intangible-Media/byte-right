@@ -1,3 +1,4 @@
+import { Ionicons, Entypo, FontAwesome } from "@expo/vector-icons";
 import {
   StyleSheet,
   Text,
@@ -14,13 +15,24 @@ export default function BottomNavigation() {
     <View style={styles.NavigationContainer}>
       <View style={styles.Navigation}>
         <Pressable style={styles.NavigationItem}>
-          <Text>Home</Text>
+          <FontAwesome name="camera" size={24} color="#BBBEC5" />
         </Pressable>
         <Pressable style={styles.NavigationItem}>
-          <Text>Home</Text>
+          <FontAwesome name="camera" size={24} color="#BBBEC5" />
         </Pressable>
         <Pressable style={styles.NavigationItem}>
-          <Text>Home</Text>
+          <Ionicons
+            style={styles.centerItem}
+            name="camera-outline"
+            size={24}
+            color="white"
+          />
+        </Pressable>
+        <Pressable style={styles.NavigationItem}>
+          <FontAwesome name="camera" size={24} color="#BBBEC5" />
+        </Pressable>
+        <Pressable style={styles.NavigationItem}>
+          <FontAwesome name="camera" size={24} color="#BBBEC5" />
         </Pressable>
       </View>
     </View>
@@ -40,8 +52,15 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     width: "100%",
     justifyContent: "space-evenly",
+    alignItems: "center",
   },
   NavigationItem: {
-    paddingVertical: 20,
+    paddingVertical: 10,
+  },
+  centerItem: {
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    borderRadius: 30,
+    backgroundColor: "#49CF0F",
   },
 });

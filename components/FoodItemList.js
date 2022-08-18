@@ -176,12 +176,12 @@ export default function FoodItemList() {
                     paddingBottom: 25,
                   },
                 ]}
-                onPress={() => {
-                  updateFoodListItems({
-                    foodItemIndex: index,
-                    food,
-                  });
-                }}
+                // onPress={() => {
+                //   updateFoodListItems({
+                //     foodItemIndex: index,
+                //     food,
+                //   });
+                // }}
               >
                 <Text style={styles.foodCardText}>{food.name}</Text>
                 <View style={{ flexDirection: "row" }}>
