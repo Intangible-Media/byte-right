@@ -59,6 +59,7 @@ export default function Profile() {
             </Text>
           </ImageBackground>
         </View>
+        <Text>Hello world</Text>
       </ScrollView>
     </View>
   );

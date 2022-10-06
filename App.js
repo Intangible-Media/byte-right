@@ -35,11 +35,14 @@ export default function App() {
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
+          headerShown: false,
           tabBarShowLabel: false,
           tabBarStyle: [
             {
-              backgroundColor: "red",
+              backgroundColor: "white",
+              paddingVertical: 0,
               color: "white",
+              height: 70,
               shadowColor: "#7f5df0",
               shadowOffset: {
                 width: 0,
@@ -52,11 +55,81 @@ export default function App() {
           ],
         }}
       >
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="New" component={Profile} />
-        <Stack.Screen name="Camera" component={Home} />
-        <Stack.Screen name="Saved" component={Profile} />
-        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Image
+                resizeMode="contain"
+                style={{ height: 20 }}
+                source={require("./assets/icons/home-icon.png")}
+              />
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="New"
+          component={Profile}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Image
+                resizeMode="contain"
+                style={{ height: 20 }}
+                source={require("./assets/icons/plus-icon.png")}
+              />
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="Camera"
+          component={Home}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <View
+                style={{
+                  padding: 15,
+                  borderRadius: 35,
+                  backgroundColor: "#49CF0F",
+                }}
+              >
+                <Image
+                  style={{
+                    width: 25,
+                    height: 25,
+                  }}
+                  source={require("./assets/icons/CameraIcon.png")}
+                />
+              </View>
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="Saved"
+          component={Profile}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Image
+                resizeMode="contain"
+                style={{ height: 20 }}
+                source={require("./assets/icons/bookmark-icon.png")}
+              />
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Image
+                resizeMode="contain"
+                style={{ height: 20 }}
+                source={require("./assets/icons/person-icon.png")}
+              />
+            ),
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
