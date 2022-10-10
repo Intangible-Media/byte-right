@@ -6,6 +6,7 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import Home from "./screens/Home";
 import Profile from "./screens/Profile";
+import MenuList from "./screens/Menu-List";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
@@ -106,7 +107,7 @@ export default function App() {
         />
         <Stack.Screen
           name="Saved"
-          component={Profile}
+          component={MenuList}
           options={{
             tabBarIcon: ({ focused }) => (
               <Image

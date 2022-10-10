@@ -15,28 +15,14 @@ import {
 export default function Home({ navigation }) {
   return (
     <View>
-      <ScrollView style={[styles.mainContainer, { paddingTop: 10 }]}>
+      <ScrollView style={[styles.mainContainer, { paddingTop: 0 }]}>
         <StatusBar style="light" />
-        <View style={{ paddingHorizontal: 20 }}>
-          <Text style={{ fontSize: 36, fontFamily: "Nunito-Black" }}>
-            Your Bite
-          </Text>
-        </View>
-        <View
-          style={{
-            width: "100%",
-            borderRadius: 30,
-            overflow: "hidden",
-            height: Dimensions.get("window").width - 50,
-            padding: 20,
-          }}
-        >
+        <View style={{ paddingHorizontal: 0 }}>
           <ImageBackground
-            source={require("../assets/main.png")}
+            source={require("../assets/foodexample.jpg")}
             resizeMode="cover"
             style={{
-              height: "100%",
-              borderRadius: 15,
+              height: 300,
               overflow: "hidden",
               flex: 1,
               justifyContent: "flex-start",
@@ -44,24 +30,17 @@ export default function Home({ navigation }) {
               paddingTop: 0,
             }}
           >
-            <Image
-              source={require("../assets/logo.png")}
-              style={{ marginBottom: 50, marginTop: 30 }}
-            />
-            <Text
+            {/* <Text
               style={{
-                color: "white",
-                fontSize: 27,
+                fontSize: 36,
                 fontFamily: "Nunito-Black",
+                paddingVertical: 70,
               }}
             >
-              Choose The Right Bite.
-            </Text>
+              Your Saved Bites
+            </Text> */}
           </ImageBackground>
         </View>
-        <FoodItemList />
-        <FoodItemList />
-        <FoodItemList />
       </ScrollView>
     </View>
   );
@@ -69,7 +48,7 @@ export default function Home({ navigation }) {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    marginTop: 30,
+    marginTop: 0,
   },
   container: {
     flex: 1,
