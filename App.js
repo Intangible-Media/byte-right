@@ -24,6 +24,7 @@ const Stack = createBottomTabNavigator();
 export default function App() {
   const [fontsLoaded] = useFonts({
     "Nunito-Black": require("./assets/fonts/Nunito-Black.ttf"),
+    "Nunito-Light": require("./assets/fonts/Nunito-Light.ttf"),
     "OpenSans-Bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
 
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#49CF0F",
+    backgroundColor: "#ffffff",
     alignItems: "center",
     justifyContent: "center",
     minHeight: 200,
