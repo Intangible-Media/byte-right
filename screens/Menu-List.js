@@ -48,6 +48,25 @@ export default function Home({ navigation }) {
       rating: "",
       image: "fake-food.jpg",
     },
+    {
+      name: "Steak & Eggs",
+      description: "",
+      rating: "",
+      image: "fake-food.jpg",
+    },
+    {
+      name: "Ham & Cheese",
+      description: "",
+      rating: "",
+      image: "fake-food.jpg",
+    },
+    { name: "Becon Guda", description: "", rating: "", image: "fake-food.jpg" },
+    {
+      name: "Bacon Burger",
+      description: "",
+      rating: "",
+      image: "fake-food.jpg",
+    },
   ]);
 
   const [activeTab, setActiveTab] = useState("menu");
@@ -172,6 +191,59 @@ export default function Home({ navigation }) {
                 </View>
               </View>
             </View>
+            {activeTab == "overview" && (
+              <View style={{ marginTop: 20 }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    marginBottom: 15,
+                  }}
+                >
+                  <Image
+                    resizeMode="contain"
+                    style={{ height: 65, width: 65, marginRight: 10 }}
+                    source={require("../assets/image/examples/chicken-salad-1.png")}
+                  />
+                  <Image
+                    resizeMode="contain"
+                    style={{ height: 65, width: 65, marginRight: 10 }}
+                    source={require("../assets/image/examples/chicken-salad-2.png")}
+                  />
+                  <Image
+                    resizeMode="contain"
+                    style={{ height: 65, width: 65, marginRight: 10 }}
+                    source={require("../assets/image/examples/chicken-salad-3.png")}
+                  />
+                  <Image
+                    resizeMode="contain"
+                    style={{ height: 65, width: 65, marginRight: 10 }}
+                    source={require("../assets/image/examples/chicken-salad-1.png")}
+                  />
+                </View>
+                <View>
+                  <Text
+                    style={{
+                      color: "#1B202B",
+                      fontFamily: "OpenSans-Bold",
+                      fontSize: 16,
+                    }}
+                  >
+                    Description
+                  </Text>
+                  <Text
+                    style={{
+                      color: "#1B202B",
+                      fontFamily: "Nunito-Light",
+                      fontSize: 16,
+                    }}
+                  >
+                    Good recipe for your health. I made it myself. It’s good for
+                    dinner. Good recipe for your health and suitable.
+                  </Text>
+                </View>
+              </View>
+            )}
           </View>
         </View>
         <View>
@@ -184,34 +256,70 @@ export default function Home({ navigation }) {
               marginBottom: 20,
             }}
           >
-            <Text style={[styles.link, { color: "#49CF0F" }]}>Menu</Text>
-            <Text style={styles.link}>Overview</Text>
-            <Text style={styles.link}>Review</Text>
+            <Text
+              style={[
+                styles.link,
+                { color: activeTab == "menu" ? "#49CF0F" : "#BBBEC5" },
+              ]}
+              onPress={() => setActiveTab("menu")}
+            >
+              Menu
+            </Text>
+            <Text
+              style={[
+                styles.link,
+                { color: activeTab == "overview" ? "#49CF0F" : "#BBBEC5" },
+              ]}
+              onPress={() => setActiveTab("overview")}
+            >
+              Overview
+            </Text>
+            <Text
+              style={[
+                styles.link,
+                { color: activeTab == "review" ? "#49CF0F" : "#BBBEC5" },
+              ]}
+              onPress={() => setActiveTab("review")}
+            >
+              Review
+            </Text>
           </View>
-          {/* This is the menu items */}
-          <View
-            style={{
-              width: "90%",
-              alignSelf: "center",
-              justifyContent: "space-around",
-            }}
-          >
-            {foodItems.map((foodItem, index) => (
-              <MenuList
-                key={foodItem.name}
-                fooditem={foodItem}
-                foodItemNumber={index + 1}
-              />
-            ))}
-          </View>
+          {activeTab === "menu" && (
+            <View
+              style={{
+                width: "90%",
+                alignSelf: "center",
+                justifyContent: "space-around",
+              }}
+            >
+              {foodItems.map((foodItem, index) => (
+                <MenuList
+                  key={`${foodItem.name}${index}`}
+                  fooditem={foodItem}
+                  foodItemNumber={index + 1}
+                />
+              ))}
+            </View>
+          )}
 
-          {/* This is the overview */}
-          <ItemIngredient />
-          <ItemIngredient />
-          <ItemIngredient />
-          <ItemIngredient />
-          <ItemIngredient />
-          <FoodItemList />
+          {activeTab === "overview" && (
+            <View
+              style={{
+                width: "90%",
+                alignSelf: "center",
+                justifyContent: "space-around",
+                marginBottom: 20,
+              }}
+            >
+              <ItemIngredient />
+              <ItemIngredient />
+              <ItemIngredient />
+              <ItemIngredient />
+              <ItemIngredient />
+            </View>
+          )}
+
+          {activeTab === "overview" && <FoodItemList />}
         </View>
       </ScrollView>
     </View>
@@ -236,9 +344,8 @@ const styles = StyleSheet.create({
     color: "#49CF0F",
   },
   link: {
-    fontSize: 20,
+    fontSize: 17,
     textAlign: "center",
     fontFamily: "OpenSans-Bold",
-    color: "#BBBEC5",
   },
 });

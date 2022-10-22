@@ -16,7 +16,7 @@ export default function FoodItemList() {
   const [foodListData, setFoodListData] = useState([
     {
       name: "Beef",
-      image: require("../assets/foodCardExample1.png"),
+      image: require("../assets/beef-example.png"),
       opened: false,
       stars: 4,
       subFoods: [
@@ -36,7 +36,7 @@ export default function FoodItemList() {
     },
     {
       name: "Chicken",
-      image: require("../assets/foodCardExample2.png"),
+      image: require("../assets/chicken-example.png"),
       opened: false,
       stars: 4,
       subFoods: [
@@ -56,7 +56,7 @@ export default function FoodItemList() {
     },
     {
       name: "Turkey",
-      image: require("../assets/foodCardExample3.png"),
+      image: require("../assets/pork-example.png"),
       opened: false,
       stars: 3,
       subFoods: [
@@ -76,7 +76,7 @@ export default function FoodItemList() {
     },
     {
       name: "Fish",
-      image: require("../assets/foodCardExample4.png"),
+      image: require("../assets/salmon-example.png"),
       opened: false,
       stars: 4,
       subFoods: [
@@ -96,7 +96,7 @@ export default function FoodItemList() {
     },
     {
       name: "Ham",
-      image: require("../assets/foodCardExample5.png"),
+      image: require("../assets/turkey-example.png"),
       opened: false,
       stars: 3,
       subFoods: [
@@ -157,54 +157,54 @@ export default function FoodItemList() {
         {foodListData.map((food, index) => (
           <View key={index} style={styles.foodCardContainer}>
             <ImageBackground
-              style={styles.foodCardImage}
               source={food.image}
-              resizeMode="contain"
+              style={styles.foodCardImage}
+              resizeMode="cover"
             >
-              <Pressable
-                style={({ pressed }) => [
-                  {
-                    backgroundColor: pressed
-                      ? "rgba(0,0,0,.2)"
-                      : "rgba(0,0,0,0)",
-                  },
-                  {
-                    height: "100%",
-                    borderRadius: 10,
-                    justifyContent: "flex-end",
-                    padding: 15,
-                    paddingBottom: 25,
-                  },
-                ]}
-                // onPress={() => {
-                //   updateFoodListItems({
-                //     foodItemIndex: index,
-                //     food,
-                //   });
-                // }}
+              <LinearGradient
+                // Button Linear Gradient
+                colors={["transparent", "#111111"]}
+                locations={[0.3, 1]}
               >
-                <Text style={styles.foodCardText}>{food.name}</Text>
-                <View style={{ flexDirection: "row" }}>
-                  {[...Array(food.stars)].map((star, starIndex) => (
-                    <Ionicons
-                      name="star"
-                      key={`${food.name}-stars-${starIndex}`}
-                      size={20}
-                      color="#FDBF00"
-                      style={{ marginRight: 3 }}
-                    />
-                  ))}
-                  {[...Array(5 - food.stars)].map((star, starIndex) => (
-                    <Entypo
-                      key={`${food.name}-stars-outlined-${starIndex}`}
-                      name="star-outlined"
-                      size={20}
-                      color="#FDBF00"
-                      style={{ marginRight: 3 }}
-                    />
-                  ))}
-                </View>
-              </Pressable>
+                <Pressable
+                  style={({ pressed }) => [
+                    {
+                      backgroundColor: pressed
+                        ? "rgba(0,0,0,.2)"
+                        : "rgba(0,0,0,0)",
+                    },
+                    {
+                      height: "100%",
+                      borderRadius: 10,
+                      justifyContent: "flex-end",
+                      padding: 15,
+                      paddingBottom: 25,
+                    },
+                  ]}
+                >
+                  <Text style={styles.foodCardText}>{food.name}</Text>
+                  <View style={{ flexDirection: "row" }}>
+                    {[...Array(food.stars)].map((star, starIndex) => (
+                      <Ionicons
+                        name="star"
+                        key={`${food.name}-stars-${starIndex}`}
+                        size={20}
+                        color="#FDBF00"
+                        style={{ marginRight: 3 }}
+                      />
+                    ))}
+                    {[...Array(5 - food.stars)].map((star, starIndex) => (
+                      <Entypo
+                        key={`${food.name}-stars-outlined-${starIndex}`}
+                        name="star-outlined"
+                        size={20}
+                        color="#FDBF00"
+                        style={{ marginRight: 3 }}
+                      />
+                    ))}
+                  </View>
+                </Pressable>
+              </LinearGradient>
             </ImageBackground>
           </View>
         ))}
@@ -220,11 +220,14 @@ const styles = StyleSheet.create({
     height: 185,
     margin: 10,
     marginLeft: 0,
-    borderRadius: 55,
+    // borderRadius: 55,
+    // overflow: "hidden",
   },
   foodCardImage: {
     flex: 1,
     justifyContent: "flex-end",
+    borderRadius: 12,
+    overflow: "hidden",
   },
   foodCardText: {
     color: "white",

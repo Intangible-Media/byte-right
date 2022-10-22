@@ -16,7 +16,7 @@ export default function Home({ navigation }) {
   return (
     <View>
       <ScrollView style={[styles.mainContainer, { paddingTop: 10 }]}>
-        <StatusBar style="light" />
+        <StatusBar style="dark" />
         <View style={{ paddingHorizontal: 20 }}>
           <Text style={{ fontSize: 36, fontFamily: "Nunito-Black" }}>
             Your Bite
@@ -69,11 +69,12 @@ export default function Home({ navigation }) {
 
 const styles = StyleSheet.create({
   mainContainer: {
+    backgroundColor: "#ffffff",
     marginTop: 30,
   },
   container: {
     flex: 1,
-    backgroundColor: "#49CF0F",
+    backgroundColor: "#ffffff",
     alignItems: "center",
     justifyContent: "center",
     minHeight: 200,
