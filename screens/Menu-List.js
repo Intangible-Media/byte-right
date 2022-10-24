@@ -2,10 +2,11 @@ import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 import ImageHeader from "../components/Headers/ImageHeader";
-import MenuList from "../components/Lists/MenuItem";
+import MenuItem from "../components/Lists/MenuItem";
 import ItemIngredient from "../components/Lists/ItemIngredient";
 import FoodItemList from "../components/FoodItemList";
 import { Ionicons } from "@expo/vector-icons";
+
 import {
   StyleSheet,
   Text,
@@ -293,10 +294,11 @@ export default function Home({ navigation }) {
               }}
             >
               {foodItems.map((foodItem, index) => (
-                <MenuList
+                <MenuItem
                   key={`${foodItem.name}${index}`}
                   fooditem={foodItem}
                   foodItemNumber={index + 1}
+                  itemIndex={index}
                 />
               ))}
             </View>
@@ -320,6 +322,89 @@ export default function Home({ navigation }) {
           )}
 
           {activeTab === "overview" && <FoodItemList />}
+
+          {activeTab === "review" && (
+            <View style={{ paddingVertical: 20 }}>
+              <View
+                style={{
+                  width: "90%",
+                  alignSelf: "center",
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  marginBottom: 11,
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                  }}
+                >
+                  <View>
+                    <Image
+                      resizeMode="contain"
+                      style={{ height: 50, width: 50, marginRight: 15 }}
+                      source={require("../assets/image/people/person-1.jpg")}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      alignSelf: "center",
+                    }}
+                  >
+                    <Text>Hello world</Text>
+                    <Text>Hello world</Text>
+                  </View>
+                </View>
+                <View>
+                  <View style={{ flexDirection: "row" }}>
+                    <Ionicons
+                      name="star"
+                      size={14}
+                      color="#FDBF00"
+                      style={{ marginRight: 2 }}
+                    />
+                    <Ionicons
+                      name="star"
+                      size={14}
+                      color="#FDBF00"
+                      style={{ marginRight: 2 }}
+                    />
+                    <Ionicons
+                      name="star"
+                      size={14}
+                      color="#FDBF00"
+                      style={{ marginRight: 2 }}
+                    />
+                    <Ionicons
+                      name="star"
+                      size={14}
+                      color="#FDBF00"
+                      style={{ marginRight: 2 }}
+                    />
+                    <Ionicons
+                      name="star"
+                      size={14}
+                      color="#FDBF00"
+                      style={{ marginRight: 2 }}
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "90%",
+                  alignSelf: "center",
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                }}
+              >
+                <Text>
+                  Good recipe for your health. I made it myself. It’s good for
+                  dinner.
+                </Text>
+              </View>
+            </View>
+          )}
         </View>
       </ScrollView>
     </View>

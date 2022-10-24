@@ -1,12 +1,23 @@
-import { Text, View, Image } from "react-native";
+import { useRef, useEffect } from "react";
+import { Text, View, Image, Animated } from "react-native";
 
 export default function MenuItem(props) {
-  const { fooditem, foodItemNumber } = props;
+  const { fooditem, foodItemNumber, itemIndex } = props;
 
   const imgUrl = require(`../../assets/fake-food.jpg`);
 
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 500 + 500 * itemIndex,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+
   return (
-    <View
+    <Animated.View
       style={{
         width: "100%",
         minHeight: 75,
@@ -20,6 +31,7 @@ export default function MenuItem(props) {
         borderRadius: 10,
         elevation: 10,
         shadowColor: "#8A8A8A",
+        opacity: fadeAnim,
       }}
     >
       <View style={{ flex: 2 }}>
@@ -67,6 +79,6 @@ export default function MenuItem(props) {
         }}
         source={imgUrl}
       />
-    </View>
+    </Animated.View>
   );
 }
