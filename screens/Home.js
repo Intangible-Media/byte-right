@@ -1,5 +1,6 @@
 import { useEffect, useCallback } from "react";
 import { StatusBar } from "expo-status-bar";
+import { Camera } from "expo-camera";
 import FoodItemList from "../components/FoodItemList";
 import BottomNavigation from "../components/Navigations/BottomNavigation";
 import {
@@ -11,6 +12,7 @@ import {
   ScrollView,
   Dimensions,
 } from "react-native";
+import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 export default function Home({ navigation }) {
   return (
@@ -58,6 +60,11 @@ export default function Home({ navigation }) {
               Choose The Right Bite.
             </Text>
           </ImageBackground>
+        </View>
+        <View>
+          <Pressable>
+            <Text>Hello World</Text>
+          </Pressable>
         </View>
         <FoodItemList />
         <FoodItemList />

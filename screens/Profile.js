@@ -1,7 +1,14 @@
-import { useEffect, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Animated, TextInput, Pressable, Alert } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { LinearGradient } from "expo-linear-gradient";
+import ImageHeader from "../components/Headers/ImageHeader-alt";
+import MenuItem from "../components/Lists/MenuItem";
+import ItemIngredient from "../components/Lists/ItemIngredient";
 import FoodItemList from "../components/FoodItemList";
-import BottomNavigation from "../components/Navigations/BottomNavigation";
+import ItemOverview from "../components/MenuDetails/ItemOverview";
+import { Ionicons } from "@expo/vector-icons";
+
 import {
   StyleSheet,
   Text,
@@ -9,57 +16,207 @@ import {
   Image,
   ImageBackground,
   ScrollView,
-  Dimensions,
 } from "react-native";
 
-export default function Profile() {
+export default function Profile({ navigation }) {
+  const [foodItems, setFoodItems] = useState([
+    {
+      name: "Chicken Parm",
+      description: "",
+      rating: "",
+      image: "fake-food.jpg",
+    },
+    {
+      name: "Steak & Eggs",
+      description: "",
+      rating: "",
+      image: "fake-food.jpg",
+    },
+    {
+      name: "Ham & Cheese",
+      description: "",
+      rating: "",
+      image: "fake-food.jpg",
+    },
+    { name: "Becon Guda", description: "", rating: "", image: "fake-food.jpg" },
+    {
+      name: "Bacon Burger",
+      description: "",
+      rating: "",
+      image: "fake-food.jpg",
+    },
+    {
+      name: "Ceasar Salad",
+      description: "",
+      rating: "",
+      image: "fake-food.jpg",
+    },
+    {
+      name: "Steak & Eggs",
+      description: "",
+      rating: "",
+      image: "fake-food.jpg",
+    },
+    {
+      name: "Ham & Cheese",
+      description: "",
+      rating: "",
+      image: "fake-food.jpg",
+    },
+    { name: "Becon Guda", description: "", rating: "", image: "fake-food.jpg" },
+    {
+      name: "Bacon Burger",
+      description: "",
+      rating: "",
+      image: "fake-food.jpg",
+    },
+  ]);
+
+  const [activeTab, setActiveTab] = useState("menu");
+
+  const [text, onChangeText] = useState("Useless Text");
+  const [number, onChangeNumber] = useState(null);
+
   return (
     <View>
-      <ScrollView style={[styles.mainContainer, { paddingTop: 20 }]}>
+      <ScrollView style={[styles.mainContainer, { paddingTop: 0 }]}>
         <StatusBar style="dark" />
-        <View style={{ paddingHorizontal: 20 }}>
-          <Text style={{ fontSize: 36, fontFamily: "Nunito-Black" }}>
-            Profile
-          </Text>
-        </View>
+        <ImageHeader />
         <View
           style={{
-            width: "100%",
-            borderRadius: 30,
-            overflow: "hidden",
-            height: Dimensions.get("window").width - 50,
-            padding: 20,
+            backgroundColor: "red",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          <ImageBackground
-            source={require("../assets/main.png")}
-            resizeMode="cover"
+          <View
             style={{
-              height: "100%",
-              borderRadius: 15,
-              overflow: "hidden",
-              flex: 1,
-              justifyContent: "flex-start",
+              justifyContent: "center",
               alignItems: "center",
-              paddingTop: 0,
+              marginTop: -50,
+              marginBottom: 30,
             }}
           >
             <Image
-              source={require("../assets/logo.png")}
-              style={{ marginBottom: 50, marginTop: 30 }}
+              style={{
+                width: 120,
+                height: 120,
+              }}
+              source={require("../assets/image/people/profile-ex.png")}
             />
             <Text
               style={{
-                color: "white",
-                fontSize: 25,
                 fontFamily: "Nunito-Black",
+                fontSize: 20,
+                textAlign: "center",
               }}
             >
-              Let's understand you
+              Hello world men
             </Text>
-          </ImageBackground>
+            <Text
+              style={{
+                fontFamily: "Nunito-Light",
+                fontSize: 10,
+                textAlign: "center",
+              }}
+            >
+              Hello world
+            </Text>
+          </View>
+          <View
+            style={{
+              width: "90%",
+            }}
+          >
+            <TextInput
+              style={{
+                backgroundColor: "#F7F7F7",
+                marginBottom: 12,
+                paddingHorizontal: 15,
+                paddingVertical: 15,
+                borderRadius: 10,
+              }}
+              onChangeText={onChangeText}
+              value={text}
+            />
+            <TextInput
+              style={{
+                backgroundColor: "#F7F7F7",
+                marginBottom: 12,
+                paddingHorizontal: 15,
+                paddingVertical: 15,
+                borderRadius: 10,
+              }}
+              onChangeText={onChangeText}
+              value={text}
+            />
+            <TextInput
+              style={{
+                backgroundColor: "#F7F7F7",
+                marginBottom: 12,
+                paddingHorizontal: 15,
+                paddingVertical: 15,
+                borderRadius: 10,
+              }}
+              onChangeText={onChangeText}
+              value={text}
+            />
+          </View>
         </View>
-        <Text>Hello world</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Pressable
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              paddingVertical: 12,
+              paddingHorizontal: 32,
+              borderRadius: 4,
+              elevation: 3,
+              backgroundColor: "#49CF0F",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 16,
+                lineHeight: 21,
+                fontWeight: "bold",
+                letterSpacing: 0.25,
+                color: "white",
+              }}
+            >
+              Save Profile
+            </Text>
+          </Pressable>
+          <Pressable
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              paddingVertical: 12,
+              paddingHorizontal: 32,
+              borderRadius: 4,
+              elevation: 3,
+              backgroundColor: "black",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 16,
+                lineHeight: 21,
+                fontWeight: "bold",
+                letterSpacing: 0.25,
+                color: "white",
+              }}
+            >
+              Save Profile
+            </Text>
+          </Pressable>
+        </View>
       </ScrollView>
     </View>
   );
@@ -67,13 +224,24 @@ export default function Profile() {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    marginTop: 10,
+    marginTop: 0,
+    backgroundColor: "#ffffff",
   },
   container: {
     flex: 1,
-    backgroundColor: "#49CF0F",
+    backgroundColor: "#ffffff",
     alignItems: "center",
     justifyContent: "center",
     minHeight: 200,
+  },
+  bodyText: {
+    fontSize: 20,
+    textAlign: "center",
+    color: "#49CF0F",
+  },
+  link: {
+    fontSize: 17,
+    textAlign: "center",
+    fontFamily: "OpenSans-Bold",
   },
 });
