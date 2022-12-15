@@ -1,8 +1,6 @@
-import { useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { StatusBar } from "expo-status-bar";
-import { Camera } from "expo-camera";
 import FoodItemList from "../components/FoodItemList";
-import BottomNavigation from "../components/Navigations/BottomNavigation";
 import {
   StyleSheet,
   Text,
@@ -11,8 +9,8 @@ import {
   ImageBackground,
   ScrollView,
   Dimensions,
+  Button,
 } from "react-native";
-import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 export default function Home({ navigation }) {
   return (
@@ -61,11 +59,6 @@ export default function Home({ navigation }) {
             </Text>
           </ImageBackground>
         </View>
-        <View>
-          <Pressable>
-            <Text>Hello World</Text>
-          </Pressable>
-        </View>
         <FoodItemList />
         <FoodItemList />
         <FoodItemList />
@@ -90,5 +83,28 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     color: "#49CF0F",
+  },
+  testcontainer: {
+    flex: 2,
+    justifyContent: "center",
+  },
+  testcamera: {
+    flex: 2,
+  },
+  testbuttonContainer: {
+    flex: 1,
+    flexDirection: "row",
+    backgroundColor: "transparent",
+    margin: 64,
+  },
+  testbutton: {
+    flex: 1,
+    alignSelf: "flex-end",
+    alignItems: "center",
+  },
+  testtext: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "white",
   },
 });
