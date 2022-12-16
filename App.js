@@ -88,6 +88,7 @@ export default function App() {
           name="Camera"
           component={Camera}
           options={{
+            unmountOnBlur: true,
             tabBarIcon: ({ focused }) => (
               <View
                 style={{

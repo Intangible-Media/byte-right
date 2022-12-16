@@ -12,18 +12,17 @@ import { useEffect, useRef, useState } from "react";
 import { Camera } from "expo-camera";
 import { shareAsync } from "expo-sharing";
 import * as MediaLibrary from "expo-media-library";
-import { createFragmentContainer } from "react-relay";
+import { useIsFocused } from "@react-navigation/native";
 
-export default function Picture() {
-  let cameraRef = useRef();
+export default function Picture({ navigation }) {
+  let cameraRef = useRef(null);
+
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
   const [photo, setPhoto] = useState();
 
   useEffect(() => {
-    const abortController = new AbortController();
-
-    const openCamera = async () => {
+    (async () => {
       try {
         const cameraPermission = await Camera.requestCameraPermissionsAsync();
         const mediaLibraryPermission =
@@ -36,13 +35,7 @@ export default function Picture() {
         console.error(error);
         return;
       }
-    };
-
-    openCamera();
-
-    return () => {
-      abortController.abort();
-    };
+    })();
   }, []);
 
   if (hasCameraPermission === undefined) {
