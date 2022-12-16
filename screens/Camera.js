@@ -6,20 +6,24 @@ import {
   SafeAreaView,
   Button,
   Image,
+  Alert,
 } from "react-native";
 import { useEffect, useRef, useState } from "react";
 import { Camera } from "expo-camera";
 import { shareAsync } from "expo-sharing";
 import * as MediaLibrary from "expo-media-library";
+import { createFragmentContainer } from "react-relay";
 
-export default function App() {
+export default function Picture() {
   let cameraRef = useRef();
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
   const [photo, setPhoto] = useState();
 
   useEffect(() => {
-    (async () => {
+    const abortController = new AbortController();
+
+    const openCamera = async () => {
       try {
         const cameraPermission = await Camera.requestCameraPermissionsAsync();
         const mediaLibraryPermission =
@@ -30,8 +34,15 @@ export default function App() {
         );
       } catch (error) {
         console.error(error);
+        return;
       }
-    })();
+    };
+
+    openCamera();
+
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   if (hasCameraPermission === undefined) {
@@ -55,7 +66,8 @@ export default function App() {
       let newPhoto = await cameraRef.current.takePictureAsync(options);
       setPhoto(newPhoto);
     } catch (error) {
-      console.error(error);
+      console.error(`YOU HAVE AN ERROR: ${error}`);
+      return;
     }
   };
 
