@@ -16,6 +16,7 @@ import { useIsFocused } from "@react-navigation/native";
 
 export default function Picture({ navigation }) {
   // Delete this later
+  // now testing
   let cameraRef = useRef(null);
 
   const [hasCameraPermission, setHasCameraPermission] = useState();
