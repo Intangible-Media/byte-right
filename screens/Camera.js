@@ -77,6 +77,82 @@ export default function Picture({ navigation }) {
       });
     };
 
+    const getMenuItems = async (menuImage) => {
+      // FUNCTION -> Send to Lazarus api
+      // Return - Array of menu items with {Item Name, Item Description, Item Price}
+
+      const data = {
+        menuImage,
+      };
+
+      try {
+        const response = await axios.post(
+          "https://www.example.com/api/endpoint",
+          data,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        // handle the response
+      } catch (error) {
+        // handle the error
+      }
+    };
+
+    const getMenuItemData = async (menuItems) => {
+      // FUNCTION -> Send each menu item to OpenAi to get ingredients and images
+      // Return - Obj of { { ItemImage, Item Description }, [ { IngredientImage }] }
+
+      const dataArray = [
+        { field1: "value1", field2: "value2" },
+        { field1: "value3", field2: "value4" },
+        { field1: "value5", field2: "value6" },
+      ];
+
+      async function sendRequests() {
+        const requests = dataArray.map((data) =>
+          axios.post("https://www.example.com/api/endpoint", data, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+        );
+
+        try {
+          const responses = await Promise.all(requests);
+
+          // handle the responses
+        } catch (error) {
+          // handle the error
+        }
+      }
+    };
+
+    const getDishIngredients = async (dish) => {
+      const data = {
+        dish,
+      };
+
+      try {
+        const response = await axios.post(
+          "https://www.example.com/api/endpoint",
+          data,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        // handle the response
+      } catch (error) {
+        // handle the error
+      }
+    };
+
     return (
       <SafeAreaView style={styles.container}>
         <Image
