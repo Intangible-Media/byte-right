@@ -2043,6 +2043,13 @@
   "resolved" "https://registry.npmjs.org/atob/-/atob-2.1.2.tgz"
   "version" "2.1.2"
 
+"axios@^0.26.0":
+  "integrity" "sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA=="
+  "resolved" "https://registry.npmjs.org/axios/-/axios-0.26.1.tgz"
+  "version" "0.26.1"
+  dependencies:
+    "follow-redirects" "^1.14.8"
+
 "axios@^1.2.1":
   "integrity" "sha512-I88cFiGu9ryt/tfVEi4kX2SITsvDddTajXTOFmt2uK1ZVA8LytjtdeyefdQWEf5PU8w+4SSJDoYnggflB5tW4A=="
   "resolved" "https://registry.npmjs.org/axios/-/axios-1.2.1.tgz"
@@ -2671,6 +2678,13 @@
   "resolved" "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz"
   "version" "0.0.1"
 
+"config@^3.2.0":
+  "integrity" "sha512-rFzF6VESOdp7wAXFlB9IOZI4ouL05g3A03v2eRcTHj2JBQaTNJ40zhAUl5wRbWHqLZ+uqp/7OE0BWWtAVgrong=="
+  "resolved" "https://registry.npmjs.org/config/-/config-3.3.8.tgz"
+  "version" "3.3.8"
+  dependencies:
+    "json5" "^2.2.1"
+
 "connect@^3.6.5", "connect@^3.7.0":
   "integrity" "sha512-ZqRXc+tZukToSNmh5C2iWMSoV3X1YUcPbqEM4DkEG5tNQXrQUZCNVGGv3IuicnkMtPfGf3Xtp8WCXs295iQ1pQ=="
   "resolved" "https://registry.npmjs.org/connect/-/connect-3.7.0.tgz"
@@ -3159,6 +3173,13 @@
     "@koale/useworker" "^4.0.2"
     "invariant" "^2.2.4"
 
+"expo-config@^1.0.0":
+  "integrity" "sha512-hHPk01bSkU7/qsnz1vpJctGe9TvwEhnOCIx/0MmJGwhXmwTrbfhIJDqq3xI1Tw576vxuacpdCsTOnmuzoxo9cA=="
+  "resolved" "https://registry.npmjs.org/expo-config/-/expo-config-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "config" "^3.2.0"
+
 "expo-constants@~13.1.0", "expo-constants@~13.1.1":
   "integrity" "sha512-QRVHrrMCLenBzWZ8M+EvCXM+jjdQzFMW27YQHRac3SGGoND1hWr81scOmGwlFo2wLZrYXm8HcYt1E6ry3IIwrA=="
   "resolved" "https://registry.npmjs.org/expo-constants/-/expo-constants-13.1.1.tgz"
@@ -3466,7 +3487,7 @@
   "resolved" "https://registry.npmjs.org/flow-parser/-/flow-parser-0.121.0.tgz"
   "version" "0.121.0"
 
-"follow-redirects@^1.15.0":
+"follow-redirects@^1.14.8", "follow-redirects@^1.15.0":
   "integrity" "sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA=="
   "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.2.tgz"
   "version" "1.15.2"
@@ -5229,6 +5250,14 @@
     "define-lazy-prop" "^2.0.0"
     "is-docker" "^2.1.1"
     "is-wsl" "^2.2.0"
+
+"openai@^3.1.0":
+  "integrity" "sha512-v5kKFH5o+8ld+t0arudj833Mgm3GcgBnbyN9946bj6u7bvel4Yg6YFz2A4HLIYDzmMjIo0s6vSG9x73kOwvdCg=="
+  "resolved" "https://registry.npmjs.org/openai/-/openai-3.1.0.tgz"
+  "version" "3.1.0"
+  dependencies:
+    "axios" "^0.26.0"
+    "form-data" "^4.0.0"
 
 "ora@^3.4.0", "ora@3.4.0":
   "integrity" "sha512-eNwHudNbO1folBP3JsZ19v9azXWtQZjICdr3Q0TDPIaeBQ3mXLrh54wM+er0+hSp+dWKf+Z8KM58CYzEyIYxYg=="
