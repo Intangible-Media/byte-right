@@ -15,6 +15,7 @@ import * as MediaLibrary from "expo-media-library";
 import { useIsFocused } from "@react-navigation/native";
 
 export default function Picture({ navigation }) {
+  // Delete this later
   let cameraRef = useRef(null);
 
   const [hasCameraPermission, setHasCameraPermission] = useState();
