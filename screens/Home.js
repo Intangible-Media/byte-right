@@ -11,8 +11,10 @@ import {
   Dimensions,
   Button,
 } from "react-native";
+import LoginForm from "../components/Forms/LoginForm";
+import SignupForm from "../components/Forms/SignupForm";
 
-export default function Home({ navigation }) {
+export default function Home({  }) {
   return (
     <View>
       <ScrollView style={[styles.mainContainer, { paddingTop: 10 }]}>
@@ -62,6 +64,7 @@ export default function Home({ navigation }) {
         <FoodItemList />
         <FoodItemList />
         <FoodItemList />
+        
       </ScrollView>
     </View>
   );

@@ -145,8 +145,6 @@ export default function FoodItemList() {
       ...foodListDataPartTwo,
     ];
 
-    console.log(newFoodListData);
-
     return setFoodListData(newFoodListData);
   };
 

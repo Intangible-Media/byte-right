@@ -10,6 +10,8 @@ import Camera from "./screens/Camera";
 import MenuList from "./screens/Menu-List";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NativeBaseProvider } from 'native-base';
+import { AuthProvider } from './components/AuthProvider/AuthProvider';
 import {
   StyleSheet,
   Text,
@@ -19,6 +21,8 @@ import {
   ScrollView,
   Dimensions,
 } from "react-native";
+import LoginForm from "./components/Forms/LoginForm";
+import SignupForm from "./components/Forms/SignupForm.js";
 
 const Stack = createBottomTabNavigator();
 
@@ -34,31 +38,36 @@ export default function App() {
   }
 
   return (
+    
+    <NativeBaseProvider>
+
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerShown: false,
-          tabBarShowLabel: false,
-          tabBarStyle: [
-            {
-              backgroundColor: "white",
-              paddingVertical: 0,
-              color: "white",
-              height: 70,
-              shadowColor: "#7f5df0",
-              shadowOffset: {
-                width: 0,
-                height: 0,
-              },
-              shadowOpaacity: 0.25,
-              shadowRadius: 4,
-              elevation: 5,
-            },
-          ],
-        }}
+        initialRouteName="Login"
+        // screenOptions={{
+        //   headerShown: false,
+        //   tabBarShowLabel: false,
+        //   tabBarStyle: [
+        //     {
+        //       backgroundColor: "white",
+        //       paddingVertical: 0,
+        //       color: "white",
+        //       height: 70,
+        //       shadowColor: "#7f5df0",
+        //       shadowOffset: {
+        //         width: 0,
+        //         height: 0,
+        //       },
+        //       shadowOpaacity: 0.25,
+        //       shadowRadius: 4,
+        //       elevation: 5,
+        //     },
+        //   ],
+        // }}
       >
-        <Stack.Screen
+      <Stack.Screen name="Login" component={LoginForm}/>
+      <Stack.Screen name="SignUp" component={SignupForm}/>
+      <Stack.Screen
           name="Home"
           component={Home}
           options={{
@@ -136,7 +145,9 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
-  );
+  
+    </NativeBaseProvider>
+    );
 }
 
 const styles = StyleSheet.create({
