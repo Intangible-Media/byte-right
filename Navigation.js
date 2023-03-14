@@ -41,13 +41,16 @@ function Navigation() {
     return (
         <NavigationContainer onReady={onLayoutRootView}>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-                {true ? (
+                <Stack.Screen name="MainContainer" component={MainContainer} />
+                
+                {/* {!getToken() ? (
                     <>
+                        <Stack.Screen name="Login" component={Login} />
                         <Stack.Screen
                             name="MainContainer"
                             component={MainContainer}
                         />
-                        <Stack.Screen name="Login" component={Login} />
+
                         <Stack.Screen name="SignUp" component={SignUp} />
                     </>
                 ) : (
@@ -58,7 +61,7 @@ function Navigation() {
                             component={MainContainer}
                         />
                     </>
-                )}
+                )} */}
             </Stack.Navigator>
             <Toast />
         </NavigationContainer>

@@ -60,8 +60,8 @@ export default function Home({ navigation }) {
                     </ImageBackground>
                 </View>
                 <FoodItemList />
-                <FoodItemList />
-                <FoodItemList />
+                {/* <FoodItemList />
+                <FoodItemList /> */}
             </ScrollView>
         </View>
     );
