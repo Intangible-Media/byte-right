@@ -11,6 +11,8 @@ import Home from "./screens/Home";
 import Toast from "react-native-toast-message";
 
 import { getToken } from "./components/context/helper";
+import StarRating from "./components/StarRating";
+import FoodItemList from "./components/FoodItemList";
 SplashScreen.preventAutoHideAsync();
 
 function Navigation() {
@@ -42,7 +44,9 @@ function Navigation() {
         <NavigationContainer onReady={onLayoutRootView}>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="MainContainer" component={MainContainer} />
-                
+                <Stack.Screen name="StarRating" component={StarRating} />
+                <Stack.Screen name="FoodItemList" component={FoodItemList} />
+                <Stack.Screen name="Home" component={Home} />
                 {/* {!getToken() ? (
                     <>
                         <Stack.Screen name="Login" component={Login} />

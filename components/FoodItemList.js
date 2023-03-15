@@ -1,6 +1,6 @@
 import { Entypo, Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
     ImageBackground,
     Pressable,
@@ -13,14 +13,16 @@ import {
 } from "react-native";
 import { API, HOST } from "../data/constants";
 import StarRating from "./StarRating";
-export default function FoodItemList() {
+export default function FoodItemList({ navigation }) {
     useEffect(() => setFoodItemslist(), []);
 
     console.log("--------------------------------");
     console.log("Hello");
     const [loading, setLoading] = useState(false);
     const [foodItems, setFoodItems] = useState([]);
+
     //function setFoodItems(list) {}
+
     let items = [];
     let myHeaders = new Headers();
     // myHeaders.append("Authorization", "Bearer " + getToken());
@@ -61,6 +63,7 @@ export default function FoodItemList() {
         for (var i = 0; i < subCategories.data.length; i++) {
             var subCategory = subCategories.data[i];
             items.push({
+                id: subCategory["id"],
                 name: subCategory["attributes"]["name"],
                 stars: subCategory["attributes"]["Rating"],
                 image:
@@ -84,27 +87,15 @@ export default function FoodItemList() {
             .then((result) => setSubcategoryList(result))
             .catch((error) => console.log("error", error));
     }
-    const [modalVisible, setModalVisible] = useState(false);
+    const [starExist, setStarExist] = useState(false);
+    const SubCategoryInfo = useRef({});
+    console.log(SubCategoryInfo.current);
     return (
         <View>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    Alert.alert("Modal has been closed.");
-                    setModalVisible(!modalVisible);
-                }}
-                style={{ height: "50%", width: "50%" }}
-            >
-                <StarRating />
-                {/* <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Hello World!</Text>
-                        
-                    </View>
-                </View> */}
-            </Modal>
+            {starExist == true && (
+                <StarRating props={SubCategoryInfo.current} />
+            )}
+
             <View style={{ paddingLeft: 20, marginBottom: 30 }}>
                 <Text style={{ fontSize: 18, fontFamily: "OpenSans-Bold" }}>
                     Meats
@@ -155,11 +146,17 @@ export default function FoodItemList() {
                                                         style={{
                                                             marginRight: 3,
                                                         }}
-                                                        onPress={() =>
-                                                            setModalVisible(
-                                                                true
-                                                            )
-                                                        }
+                                                        onPress={() => {
+                                                            // navigation.navigate(
+                                                            //     "StarRating"
+                                                            // );
+                                                            SubCategoryInfo.current =
+                                                                {
+                                                                    name: food.name,
+                                                                    id: food.id,
+                                                                };
+                                                            setStarExist(true);
+                                                        }}
                                                     />
                                                 )
                                             )}
@@ -173,11 +170,11 @@ export default function FoodItemList() {
                                                         style={{
                                                             marginRight: 3,
                                                         }}
-                                                        onPress={() =>
-                                                            setModalVisible(
-                                                                true
-                                                            )
-                                                        }
+                                                        onPress={() => {
+                                                            navigation.navigate(
+                                                                "StarRating"
+                                                            );
+                                                        }}
                                                     />
                                                 )
                                             )}

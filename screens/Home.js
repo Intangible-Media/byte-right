@@ -59,9 +59,9 @@ export default function Home({ navigation }) {
                         </Text>
                     </ImageBackground>
                 </View>
+                {/* <FoodItemList props={navigation} /> */}
                 <FoodItemList />
-                {/* <FoodItemList />
-                <FoodItemList /> */}
+                {/* <FoodItemList /> */}
             </ScrollView>
         </View>
     );
