@@ -14,8 +14,8 @@ import {
 import { API, HOST } from "../data/constants";
 import StarRating from "./StarRating";
 
-export default function FoodItemList() {
-    useEffect(() => setFoodItemslist(), []);
+export default function FoodItemList({mainCategory}) {
+    useEffect(() => setSubCategory(mainCategory), []);
 
     console.log("--------------------------------");
     console.log("Hello");
@@ -32,34 +32,7 @@ export default function FoodItemList() {
         "Bearer " +
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc4NDU5MjM1LCJleHAiOjE2ODEwNTEyMzV9.7jaXePe7Elgc018Wrl3iA19ebh4itI_LWptVv9pPJRk"
     );
-    function setFoodItemsList(categories) {
-        for (var i = 0; i < categories.data.length; i++) {
-            var category = categories.data[i];
-            items.push({
-                name: category["attributes"]["name"],
-                stars: category["attributes"]["Rating"],
-                image:
-                    HOST +
-                    category["attributes"]["category_image"]["data"][
-                        "attributes"
-                    ]["url"],
-            });
-        }
-        setFoodItems(items);
-    }
-
-    function setFoodItemslist() {
-        const url = `${API}/categories?populate=*`;
-
-        fetch(url, {
-            method: "GET",
-            headers: myHeaders,
-        })
-            .then((response) => response.json())
-            .then((result) => setFoodItemsList(result))
-            .catch((error) => console.log("error", error));
-    }
-
+    
     function setSubcategoryList(subCategories) {
         for (var i = 0; i < subCategories.data.length; i++) {
             var subCategory = subCategories.data[i];
@@ -259,162 +232,3 @@ const styles = StyleSheet.create({
     },
 });
 
-// useEffect(() => {
-//     // .then((json) => setData(json))
-//     // .catch((error) => console.error(error))
-//     // .finally(() => setLoading(false));
-// }, []);
-
-//     var myHeaders = new Headers();
-// myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc4NDU5MjM1LCJleHAiOjE2ODEwNTEyMzV9.7jaXePe7Elgc018Wrl3iA19ebh4itI_LWptVv9pPJRk");
-
-// var requestOptions = {
-//   method: 'GET',
-//   headers: myHeaders,
-//   redirect: 'follow'
-// };
-
-// fetch("http://192.168.0.148:1337/api/categories", requestOptions)
-//   .then(response => response.text())
-//   .then(result => console.log(result))
-//   .catch(error => console.log('error', error));
-
-// const [foodListData, setFoodListData] = useState([
-//     {
-//         name: "Beef",
-//         image: require("../assets/beef-example.png"),
-//         opened: false,
-//         stars: 4,
-//         subFoods: [
-//             {
-//                 name: "Beef - Ribeye",
-//                 image: require("../assets/foodCardExample2.png"),
-//                 stars: 2,
-//                 subFoods: [],
-//             },
-//             {
-//                 name: "Beef - Ground Beef",
-//                 image: require("../assets/foodCardExample4.png"),
-//                 stars: 3,
-//                 subFoods: [],
-//             },
-//         ],
-//     },
-//     {
-//         name: "Chicken",
-//         image: require("../assets/chicken-example.png"),
-//         opened: false,
-//         stars: 4,
-//         subFoods: [
-//             {
-//                 name: "Chicken - Legs",
-//                 image: require("../assets/foodCardExample2.png"),
-//                 stars: 3,
-//                 subFoods: [],
-//             },
-//             {
-//                 name: "Chicken - Beast",
-//                 image: require("../assets/foodCardExample4.png"),
-//                 stars: 3,
-//                 subFoods: [],
-//             },
-//         ],
-//     },
-//     {
-//         name: "Turkey",
-//         image: require("../assets/pork-example.png"),
-//         opened: false,
-//         stars: 3,
-//         subFoods: [
-//             {
-//                 name: "Chicken",
-//                 image: require("../assets/foodCardExample2.png"),
-//                 stars: 3,
-//                 subFoods: [],
-//             },
-//             {
-//                 name: "Fish",
-//                 image: require("../assets/foodCardExample4.png"),
-//                 stars: 3,
-//                 subFoods: [],
-//             },
-//         ],
-//     },
-//     {
-//         name: "Fish",
-//         image: require("../assets/salmon-example.png"),
-//         opened: false,
-//         stars: 4,
-//         subFoods: [
-//             {
-//                 name: "Chicken",
-//                 image: require("../assets/foodCardExample2.png"),
-//                 stars: 3,
-//                 subFoods: [],
-//             },
-//             {
-//                 name: "Fish",
-//                 image: require("../assets/foodCardExample4.png"),
-//                 stars: 3,
-//                 subFoods: [],
-//             },
-//         ],
-//     },
-//     {
-//         name: "Ham",
-//         image: require("../assets/turkey-example.png"),
-//         opened: false,
-//         stars: 3,
-//         subFoods: [
-//             {
-//                 name: "Chicken",
-//                 image: require("../assets/foodCardExample2.png"),
-//                 stars: 3,
-//                 subFoods: [],
-//             },
-//             {
-//                 name: "Fish",
-//                 image: require("../assets/foodCardExample4.png"),
-//                 stars: 3,
-//                 subFoods: [],
-//             },
-//         ],
-//     },
-// ]);
-
-// const updateFoodListItems = ({ foodItemIndex, food }) => {
-//     if (food.subFoods.length === 0) return;
-//     if (food.opened) {
-//         // get the id of all the foods on that group and its children
-
-//         return;
-//     }
-
-//     const foodListDataCopy = [...foodListData];
-
-//     // this updates the list to let the user know that the food they clicked
-//     // on
-//     const updatedFoodListData = foodListDataCopy.map((foodItem) => {
-//         if (foodItem.name === food.name) {
-//             return (foodItem.opened = !foodItem.opened);
-//         }
-
-//         return;
-//     });
-
-//     const foodListDataPartOne = foodListDataCopy.slice(
-//         0,
-//         foodItemIndex + 1
-//     );
-//     const foodListDataPartTwo = foodListDataCopy.slice(foodItemIndex + 1);
-
-//     const newFoodListData = [
-//         ...foodListDataPartOne,
-//         ...food.subFoods,
-//         ...foodListDataPartTwo,
-//     ];
-
-//     console.log(newFoodListData);
-
-//     return setFoodListData(newFoodListData);
-// };
